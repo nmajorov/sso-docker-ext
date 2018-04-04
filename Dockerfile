@@ -1,4 +1,4 @@
-FROM  redhat-sso-7/sso72-openshift:latest
+FROM  registry.access.redhat.com/redhat-sso-7/sso72-openshift:latest
 
 
 USER jboss
