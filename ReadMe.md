@@ -24,6 +24,7 @@ username: admin password: Sion2018!
 
         GIT_SSL_NO_VERIFY=true oc new-app https://gogs.app.niko-cloud.ch/niko/sso72 --strategy=docker --source-secret=gitsecret
 
+        
 
 
 1. Create secret to pull from registry:
@@ -37,5 +38,10 @@ username: admin password: Sion2018!
 
 git option to ignore self-signet certificate:
 
+        git config http.sslVerify "false"
 
-      
+set username and stop ask password for 1800 sec:
+
+
+        git config credential.https://gogs.app.niko-cloud.ch/niko/sso72.username niko
+        git config credential.helper 'cache --timeout 1800'
