@@ -18,6 +18,15 @@ go to url [http://localhost:8080](http://localhost:8080)
 username: admin password: Sion2018!
 
 
+## Build on openshift
+
+1. Create secret to pull from registry:
+
+        oc secrets new-basicauth gitsecret \
+        --username=$GIT_USER \
+        --password=$GIT_PASSWORD \
+        --gitconfig=.gitconfig
+
 ## Tips
 
 git option to ignore self-signet certificate:
