@@ -30,7 +30,8 @@ node {
 
       sh "pwd;ls -a"
 
-      
+      //use latest sso image 
+      sh "oc import-image my-redhat-sso-7/sso72-openshift --from=registry.access.redhat.com/redhat-sso-7/sso72-openshift --confirm"
 
 
      }//end of stage('prepare')
@@ -47,16 +48,17 @@ node {
         for (i = 0; i <3; i++) {
             sleep 60 //sleep a minute
             String status = sh(script: 'echo $(oc get svc/sso72 2>&1)', returnStdout: true)
-            if (!status.contains("NotFound")){
+            println("status: $status")
+
+            if (status.contains("NotFound")){
+               break
+            }else {
                 println("waiting until delete is finished")
                 if(i == 2){
                     println("delete takes too long check openshift events ")
                     exit 1
-                }else{
-                    break
                 }
-
-           }//if (!status.contains("NotFound"))
+            }//if (!status.contains("NotFound"))
 
         }//end for
 
