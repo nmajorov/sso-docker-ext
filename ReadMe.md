@@ -1,21 +1,4 @@
-# Build custom docker sso72 image
-
-## Build locally with docker
-
-run command to build locally:
-
-        ./build_local.sh
-
-
-test/run locally:
-
-
-            docker run --rm -ti -p 8080:8080  ch/sso72
-
-
-go to url [http://localhost:8080](http://localhost:8080)
-
-username: admin password: Sion2018!
+# Build custom docker openshift sso72 image with pipline
 
 
 ## Build on openshift
@@ -29,9 +12,10 @@ username: admin password: Sion2018!
 2. create new pipeline strategy project with command
 
 
-        oc new-app git@github.com:nmajorov/sso-docker-ext.git   --name=jenkins --strategy=pipeline
+        oc new-app https://github.com/nmajorov/sso-docker-ext.git   --name=jenkins --strategy=pipeline
 
-for my custom repo deployment I have to create secrets first:
+
+**optionally** for my custom repo deployment I have to create secrets first:
 
 Create secret to pull from registry:
 
