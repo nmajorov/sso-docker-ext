@@ -30,16 +30,25 @@ node {
 
       sh "pwd;ls -a"
 
-
+      
 
 
      }//end of stage('prepare')
 
      stage('build') {
          println("start build image")
-         
+
+        def output = sh(script: 'echo $(oc delete all  -l app=sso72 2>&1)', returnStdout: true)
+
+         println("command output: $output")
+
+         sh "rm -fr .git themes/rh-sso/.git" 
+
+         sh " oc new-app --code=. --strategy=docker --name=sso72"
          sh "oc new-app --code=.  --strategy=docker --name=sso72"
-    
+         sh "oc start-build --from-dir=. sso72"
+         sh "oc expose service sso72"
+
      } //end stage build
 
 
