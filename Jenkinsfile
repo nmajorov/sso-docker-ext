@@ -7,8 +7,7 @@
 
 node {
 
-     def NODE_PROJECT_EXIST = false
-
+     
 
     //check if project exist
      stage('prepare') {
