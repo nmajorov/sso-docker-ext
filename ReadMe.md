@@ -1,4 +1,4 @@
-# Build custom docker openshift sso72 image with pipline
+# Build custom docker openshift sso72 image with pipeline
 
 
 ## Build on openshift
