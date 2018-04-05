@@ -31,10 +31,14 @@ node {
       sh "pwd;ls -a"
 
 
+
+
      }//end of stage('prepare')
 
      stage('build') {
          println("start build image")
+         
+         sh "oc new-app --code=.  --strategy=docker --name=sso72"
     
      } //end stage build
 
