@@ -27,7 +27,7 @@ Create secret to pull from registry:
 then run command:
 
 
-        GIT_SSL_NO_VERIFY=true oc new-app https://gogs.app.niko-cloud.ch/niko/sso72 --strategy=docker --source-secret=gitsecret
+        GIT_SSL_NO_VERIFY=true oc new-app https://gogs.app.niko-cloud.ch/niko/sso72 --strategy=pipeline --source-secret=gitsecret
 
         
 
