@@ -1,8 +1,9 @@
 
 
 /**
- * simple jenkins pipeline for nodejs application
- */
+ * simple jenkins pipeline  change redhat sso image
+ *
+ **/
 
 node {
 
