@@ -72,7 +72,7 @@ node {
      } //end stage build
 
 
-
+    deleteDir()
 }
 
 //
