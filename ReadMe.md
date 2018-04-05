@@ -21,18 +21,32 @@ username: admin password: Sion2018!
 ## Build on openshift
 
 
-
-        GIT_SSL_NO_VERIFY=true oc new-app https://gogs.app.niko-cloud.ch/niko/sso72 --strategy=docker --source-secret=gitsecret
-
-        
+1. Create new-project
 
 
-1. Create secret to pull from registry:
+        oc new-project sso-build
+
+2. create new pipeline strategy project with command
+
+
+        oc new-app git@github.com:nmajorov/sso-docker-ext.git   --name=jenkins --strategy=pipeline
+
+for my custom repo deployment I have to create secrets first:
+
+Create secret to pull from registry:
 
         oc secrets new-basicauth gitsecret \
         --username=$GIT_USER \
         --password=$GIT_PASSWORD \
         --gitconfig=.gitconfig
+
+then run command:
+
+
+        GIT_SSL_NO_VERIFY=true oc new-app https://gogs.app.niko-cloud.ch/niko/sso72 --strategy=docker --source-secret=gitsecret
+
+        
+
 
 ## Tips
 

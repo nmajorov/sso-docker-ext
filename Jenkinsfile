@@ -12,7 +12,14 @@ node {
     //check if project exist
      stage('prepare') {
 
-      sh "oc project"
+      sh "oc project sso-build"
+
+      checkout([$class: 'GitSCM', branches: [[name: '*/master']], 
+               doGenerateSubmoduleConfigurations: false, extensions: [],
+              submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/nmajorov/sso-custom-theme.git']]]
+             )
+
+      sh "pwd;ls -a"
 
 
      }//end of stage('prepare')
