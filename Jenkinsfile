@@ -48,13 +48,15 @@ node {
             sleep 60 //sleep a minute
             String status = sh(script: 'echo $(oc get svc/sso72 2>&1)', returnStdout: true)
             if (!status.contains("NotFound")){
-            println("waiting until delete is finished")
-            if(i == 2){
-                println("delete takes too long check openshift events ")
-                exit 1
-            }else{
-                break
-            }
+                println("waiting until delete is finished")
+                if(i == 2){
+                    println("delete takes too long check openshift events ")
+                    exit 1
+                }else{
+                    break
+                }
+
+           }//if (!status.contains("NotFound"))
 
         }//end for
 
