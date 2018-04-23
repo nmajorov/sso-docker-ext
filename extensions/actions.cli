@@ -1,0 +1,9 @@
+## admin cli commands to edit the configuration
+embed-server --std-out=echo  --server-config=standalone-openshift.xml
+batch
+module add --name=com.oracle --resources=/extensions/ojdbc8-12.2.0.1.jar --dependencies=javax.api,javax.resource.api
+/subsystem=datasources/jdbc-driver=oracle:add(driver-name=oracle,driver-module-name=com.oracle,driver-xa-datasource-class-name=oracle.jdbc.xa.client.OracleXADataSource)
+/subsystem=datasources/data-source=KeycloakDS:remove()
+/subsystem=datasources/data-source=KeycloakDS:add(jndi-name=java:jboss/datasources/KeycloakDS,enabled=true,use-java-context=true,connection-url="jdbc\:oracle\:thin\:@(DESCRIPTION\=(LOAD_BALANCE\=on)(ADDRESS\=(PROTOCOL\=TCP)(HOST\=<host>)(PORT\=1521))(ADDRESS\=(PROTOCOL\=TCP)(HOST\=${env.DB_HOST})(PORT\=${env.DB_PORT}))(CONNECT_DATA\=(SERVICE_NAME\=${env.DB_SERVICE_NAME})))",driver-name=oracle,user-name=${env.DB_USERNAME},password=${env.DB_USERNAME})
+run-batch
+quit
