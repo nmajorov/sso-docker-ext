@@ -1,7 +1,8 @@
-# Build custom docker openshift sso72 image with pipeline
+# Custom docker openshift sso 7.2 image for oracle database as backend
 
 
-## Build on openshift
+
+## Build on openshift as Jenkins pipeline
 
 
 1. Create new-project
